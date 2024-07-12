@@ -1,14 +1,15 @@
 version: 2
 
-
 sources:
   - name: raw
-    database: dbt_db
-    schema: snapshot
+    database: DBT_DB 
+    schema: raw
     tables:
-      - name: employee_details
-      - name: item
-      - name: store
-      - name: test_data
+      - name: TEST_DATA
+      - name: employee details
+      - name: EMP_INSERT_DATA
+      - name: EMP_DAY1_DATA
       - name: EMP_DAY2_DATA
       - name: EMP_DAY3_DATA
+      - name: EMP_DAY4_DATA
+      - name: EMP_DAY5_DATA

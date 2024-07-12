@@ -1,0 +1,18 @@
+version: 2
+
+models:
+  - name: employee_synced
+    columns:
+      - name: EMPLOYEE_ID
+        tests:
+          - unique
+          - not_null
+      - name: Change_Status
+        tests:
+          - accepted_values:
+              values: ['Updated/New', 'Unchanged']
+
+
+snapshots:
+  - name: employee_snapshot
+    # ... any specific configurations for the snapshot ...
