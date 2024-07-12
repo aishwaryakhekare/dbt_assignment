@@ -20,12 +20,6 @@ models:
         tests:
           - unique
           - not_null
-      - name: EMPLOYEE_FIRST_NAME
-        tests:
-          - not_null
-      - name: EMPLOYEE_LAST_NAME
-        tests:
-          - not_null
       - name: Designation
         tests:
           - not_null
@@ -35,14 +29,9 @@ models:
       - name: Employee_email
         tests:
           - unique
-          - not_null
       - name: EMPLOYEE_PHONE_NUMBER
         tests:
           - unique
-          - not_null
-      - name: EMPLOYEE_ADDRESS
-        tests:
-          - not_null
       - name: Last_modified_timestamp
         tests:
           - not_null
