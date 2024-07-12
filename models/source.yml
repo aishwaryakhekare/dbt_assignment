@@ -1,14 +1,47 @@
 version: 2
 
-
 sources:
   - name: raw
-    database: dbt_db
-    schema: snapshot
+    database: DBT_DB 
+    schema: raw
     tables:
-      - name: employee_details
-      - name: item
-      - name: store
-      - name: test_data
+      - name: TEST_DATA
+      - name: employee details
+      - name: EMP_INSERT_DATA
+      - name: EMP_DAY1_DATA
       - name: EMP_DAY2_DATA
       - name: EMP_DAY3_DATA
+      - name: EMP_DAY4_DATA
+      - name: EMP_DAY5_DATA
+models:
+  - name: employee_model
+    columns:
+      - name: EMPLOYEE_ID
+        tests:
+          - unique
+          - not_null
+      - name: Designation
+        tests:
+          - not_null
+      - name: Department
+        tests:
+          - not_null
+      - name: Employee_email
+        tests:
+          - unique
+      - name: EMPLOYEE_PHONE_NUMBER
+        tests:
+          - unique
+      - name: Last_modified_timestamp
+        tests:
+          - not_null
+
+  - name: employee_details
+    columns:
+      - name: EMPLOYEE_ID
+        tests:
+          - unique
+          - not_null
+          - relationships:
+              to: ref('employee_model')
+              field: EMPLOYEE_ID

@@ -38,13 +38,14 @@ clean-targets:         # directories to be removed by `dbt clean`
 models:
   my_new_project:
     # Applies to all files under models/example/
-    +transient: False
-    raw:
+    example:
       +materialized: table
-      +schema: raw
-    staging:
+    employee_synced:
       +materialized: table
-      +schema : staging
-    reporting:
-      +materialized: view
-      +schema : reporting
+    employee_model:
+      +materialized: table
+
+    snapshots:
+      +target_schema: snapshot
+    
+

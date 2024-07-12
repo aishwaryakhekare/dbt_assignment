@@ -1,19 +1,12 @@
-{{ config(
-    materialized='table',
-    pre_hook="select count(*) as row_count from {{this}}"
-    
-) }}
-with cte as (
-    select
-        EMPLOYEE_ID,
-        concat(EMPLOYEE_FIRST_NAME,' ', EMPLOYEE_LAST_NAME) as full_name,
-        DESIGNATION,
-        DEPARTMENT,
-        EMPLOYEE_EMAIL,
-        EMPLOYEE_PHONE_NUMBER,
-        EMPLOYEE_ADDRESS
-    from {{ ref('model1') }}
-    where EMPLOYEE_FIRST_NAME is not null
-      and EMPLOYEE_LAST_NAME is not null
+{{ config(materialized='table') }}
+
+WITH employee_base AS (
+    SELECT * FROM {{ ref('model1') }}
 )
-select * from cte
+
+SELECT
+    Department,
+    COUNT(*) AS employee_count,
+    MAX(Last_modified_timestamp) AS latest_update
+FROM employee_base
+GROUP BY Department

@@ -1,11 +1,9 @@
-{{
-    config(
-        materialized='ephemeral'
-    )
-}}
+{{ config(materialized='table') }}
 
-with cte as(
-    select * from {{source('raw','employee_details')}}
-)
-
-select * from cte
+SELECT
+    EMPLOYEE_ID,
+    EMPLOYEE_FIRST_NAME,
+    EMPLOYEE_LAST_NAME,
+    Department,
+    Last_modified_timestamp
+FROM {{ source('raw', 'TEST_DATA') }}
